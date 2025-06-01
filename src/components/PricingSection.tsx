@@ -14,7 +14,7 @@ export const PricingSection: React.FC = () => {
             Il nostro listino prezzi riflette la qualità dei materiali, la precisione del taglio laser e la natura artigianale di ogni pezzo. Tutti i prezzi sono punti di partenza e possono variare in base alla complessità e alla personalizzazione.
           </p>
         </div>
-        
+
         <div className="max-w-4xl mx-auto">
           <div className="overflow-hidden rounded-lg shadow">
             <table className="min-w-full bg-white">
@@ -41,7 +41,7 @@ export const PricingSection: React.FC = () => {
               </tbody>
             </table>
           </div>
-          
+
           <div className="mt-8 bg-amber-50 p-6 rounded-lg shadow-inner">
             <h3 className="text-xl font-serif font-semibold text-amber-900 mb-4">
               Preventivi per progetti personalizzati

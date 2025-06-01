@@ -1,24 +1,33 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { WorksSection } from './components/WorksSection';
 import { ServicesSection } from './components/ServicesSection';
-import { PricingSection } from './components/PricingSection';
 import { Footer } from './components/Footer';
+import CategoryPage from './components/CategoryPage';
+
 
 function App() {
   return (
     <div className="min-h-screen font-sans">
-      <Header />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <WorksSection />
-        <ServicesSection />
-        <PricingSection />
-      </main>
-      <Footer />
+      <Router>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <HeroSection />
+                <AboutSection />
+                <ServicesSection />
+              </>
+            } />
+            <Route path="/categoria/:id" element={<CategoryPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
     </div>
   );
 }

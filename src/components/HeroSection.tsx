@@ -5,7 +5,7 @@ export const HeroSection: React.FC = () => {
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.pexels.com/photos/5825394/pexels-photo-5825394.jpeg"
+          src="/assets/images/logo-bg.png"
           alt="Wood laser art background"
           className="object-cover w-full h-full opacity-25"
         />
