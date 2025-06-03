@@ -7,7 +7,7 @@ export const HeroSection: React.FC = () => {
         <img
           src="/assets/images/logo-bg.png"
           alt="Wood laser art background"
-          className="object-cover w-full h-full opacity-25"
+          className="object-cover w-full h-full opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-amber-50/80 to-white/90"></div>
       </div>
@@ -20,12 +20,12 @@ export const HeroSection: React.FC = () => {
           Trasformiamo il legno in arte grazie al taglio laser di precisione e alla maestria artigianale
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
+          {/* <a
             href="#works"
             className="px-8 py-3 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors duration-300 shadow-md"
           >
             Scopri le nostre opere
-          </a>
+          </a> */}
           <a
             href="#contact"
             className="px-8 py-3 bg-transparent border-2 border-amber-600 text-amber-700 rounded-md hover:bg-amber-50 transition-colors duration-300"

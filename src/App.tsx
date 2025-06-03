@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
-import { WorksSection } from './components/WorksSection';
-import { ServicesSection } from './components/ServicesSection';
 import { Footer } from './components/Footer';
 import CategoryPage from './components/CategoryPage';
 
@@ -20,7 +18,6 @@ function App() {
               <>
                 <HeroSection />
                 <AboutSection />
-                <ServicesSection />
               </>
             } />
             <Route path="/categoria/:id" element={<CategoryPage />} />

@@ -14,10 +14,10 @@ export const navigationItems: NavItem[] = [
     href: "#works",
     children: []
   },
-  {
-    label: "Servizi",
-    href: "#services"
-  },
+  // {
+  //   label: "Servizi",
+  //   href: "#services"
+  // },
   {
     label: "Contatti",
     href: "#contact"

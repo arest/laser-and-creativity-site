@@ -23,10 +23,10 @@ export const Footer: React.FC = () => {
               Trasformiamo il legno in arte grazie al taglio laser di precisione e alla maestria artigianale dal 2018.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
+              <a href="https://www.instagram.com/_marisa60" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
+              <a href="https://www.facebook.com/share/16g8kLXyE5/" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
                 <Facebook className="h-6 w-6" />
               </a>
             </div>
