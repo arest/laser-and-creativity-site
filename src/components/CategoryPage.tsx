@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
 import { useNavigationItems } from '../hooks/useNavigationItems';
 
@@ -16,9 +16,9 @@ const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; o
           </div>
         ) : product.video ? (
           <div className="h-48">
-            <video 
-              src={product.video} 
-              controls 
+            <video
+              src={product.video}
+              controls
               className="w-full h-full object-contain"
             />
           </div>
@@ -38,9 +38,9 @@ const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; o
       <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.video && product.immagine ? (
           <div className="h-48">
-            <video 
-              src={product.video} 
-              controls 
+            <video
+              src={product.video}
+              controls
               className="w-full h-full object-contain"
             />
           </div>
