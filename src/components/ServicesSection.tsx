@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTexts } from '../hooks/useTexts';
 import {
   UserCircle,
   PenTool,
@@ -8,8 +9,17 @@ import {
   Repeat
 } from 'lucide-react';
 
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  icon: JSX.Element;
+}
+
 export const ServicesSection: React.FC = () => {
-  const services = [
+  const { texts, loading } = useTexts();
+  const testo = texts.find((t) => t.id === 2);
+  /* const services = [
     {
       id: 'custom-portraits',
       title: 'Ritratti Personalizzati',
@@ -25,7 +35,7 @@ export const ServicesSection: React.FC = () => {
     {
       id: 'clocks',
       title: 'Orologi Artistici',
-      description: 'Opere d’arte funzionali che segnano il tempo con stile. I nostri orologi in legno presentano design intricati tagliati al laser e meccanismi di qualità.',
+      description: 'Opere d'arte funzionali che segnano il tempo con stile. I nostri orologi in legno presentano design intricati tagliati al laser e meccanismi di qualità.',
       icon: <Clock className="w-12 h-12 text-amber-600" />
     },
     {
@@ -46,18 +56,21 @@ export const ServicesSection: React.FC = () => {
       description: 'Ridiamo vita a oggetti in legno a cui tieni con servizi di restauro, inclusa la riparazione laser di intarsi danneggiati.',
       icon: <Repeat className="w-12 h-12 text-amber-600" />
     }
-  ];
+  ]; */
+  const services: Service[] = []; // Temporary empty array with proper typing
 
   return (
     <section id="services" className="py-20 bg-amber-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-amber-900 mb-4">
-            Cosa facciamo
+          {testo?.label}
           </h2>
           <div className="w-24 h-1 bg-amber-500 mx-auto mb-8"></div>
           <p className="text-amber-800 max-w-2xl mx-auto">
-            Il nostro studio si specializza nel combinare la lavorazione tradizionale del legno con il taglio e l'incisione laser di precisione per creare opere uniche, personalizzate e funzionali.
+            {testo?.paragraphs.map((paragraph: string, index: number) => (
+              <div key={index} className="text-amber-900 leading-relaxed" dangerouslySetInnerHTML={{ __html: paragraph }} />
+            ))}
           </p>
         </div>
 

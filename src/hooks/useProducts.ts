@@ -6,6 +6,7 @@ export interface Product {
   descrizione: string;
   categoria: string;
   immagine?: string;
+  immagine2?: string;
   video?: string;
   videoUrl?: string;
 }
@@ -43,6 +44,7 @@ interface ContentfulProductItem {
     descrizione: any;
     categoria?: { sys: { id: string } };
     immagine?: { fields: { file: { url: string } } };
+    immagine2?: { fields: { file: { url: string } } };
     video?: { sys: { id: string } };
     videoUrl?: string;
   };
@@ -76,6 +78,7 @@ async function fetchProducts(): Promise<Product[]> {
       descrizione: extractRichText(item.fields.descrizione),
       categoria: item.fields.categoria?.sys?.id || '',
       immagine: item.fields.immagine?.fields?.file?.url || '',
+      immagine2: item.fields.immagine2?.fields?.file?.url || '',
       video,
       videoUrl: item.fields.videoUrl || '',
     };

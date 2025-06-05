@@ -5,19 +5,52 @@ import { useNavigationItems } from '../hooks/useNavigationItems';
 
 // ProductCard component for displaying a single product
 const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; onClick: () => void }> = ({ product, onClick }) => (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer" onClick={onClick}>
-    {product.immagine ? (
-      <img src={product.immagine} alt={product.titolo} className="w-full h-48 object-cover" />
-    ) : null}
-    <div className="p-4 flex-1 flex flex-col">
-      <h3 className="text-xl font-serif font-semibold text-amber-900 mb-2">{product.titolo}</h3>
-      <p className="text-amber-800 mb-2 flex-1 line-clamp-2">{product.descrizione}</p>
-      {product.video && (
-        <video controls className="w-full mt-2">
-          <source src={product.video} type="video/mp4" />
-          Il tuo browser non supporta il tag video.
-        </video>
-      )}
+  <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer mb-6" onClick={onClick}>
+    <h3 className="text-xl font-serif font-semibold text-amber-900 p-4 border-b border-amber-100">{product.titolo}</h3>
+    <div className="grid grid-cols-4 w-full">
+      {/* First Column - Primary Media */}
+      <div className="p-4">
+        {product.immagine ? (
+          <div className="h-48">
+            <img src={product.immagine} alt={product.titolo} className="w-full h-full object-contain" />
+          </div>
+        ) : product.video ? (
+          <div className="h-48">
+            <video 
+              src={product.video} 
+              controls 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        ) : null}
+      </div>
+
+      {/* Second Column - Secondary Image */}
+      <div className="p-4">
+        {product.immagine2 ? (
+          <div className="h-48">
+            <img src={product.immagine2} alt={`${product.titolo} - Seconda immagine`} className="w-full h-full object-contain" />
+          </div>
+        ) : null}
+      </div>
+
+      {/* Third Column - Video (only if there's a primary image) */}
+      <div className="p-4">
+        {product.video && product.immagine ? (
+          <div className="h-48">
+            <video 
+              src={product.video} 
+              controls 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        ) : null}
+      </div>
+
+      {/* Content Column */}
+      <div className="p-4">
+        <p className="text-amber-800">{product.descrizione}</p>
+      </div>
     </div>
   </div>
 );
@@ -48,7 +81,7 @@ const CategoryPage: React.FC = () => {
   return (
     <section className="py-20">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-2xl mx-auto bg-white overflow-hidden p-8 text-center mb-8">
+        <div className="max-w-4xl mx-auto bg-white overflow-hidden p-8 text-center mb-8">
           <h2 className="text-2xl font-serif font-bold text-amber-900 mb-4">{categoryTitle}</h2>
         </div>
         {loading ? (
@@ -56,7 +89,7 @@ const CategoryPage: React.FC = () => {
         ) : filteredProducts.length === 0 ? (
           <div className="text-center text-amber-700">Nessun prodotto trovato per questa categoria.</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="max-w-4xl mx-auto">
             {filteredProducts.map((product, idx) => (
               <ProductCard key={idx} product={product} onClick={() => setSelectedProduct(product)} />
             ))}
@@ -67,14 +100,20 @@ const CategoryPage: React.FC = () => {
       {selectedProduct && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={closeModal}>
           <div
-            className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-auto relative"
+            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto relative"
             onClick={e => e.stopPropagation()}
           >
-            {selectedProduct.immagine ? (
+            {selectedProduct.video ? (
+              <video
+                src={selectedProduct.video}
+                controls
+                className="w-full h-auto max-h-[80vh] object-contain rounded-t-lg"
+              />
+            ) : selectedProduct.immagine ? (
               <img
                 src={selectedProduct.immagine}
                 alt={selectedProduct.titolo}
-                className="w-full h-auto max-h-[60vh] object-cover rounded-t-lg"
+                className="w-full h-auto max-h-[80vh] object-contain rounded-t-lg"
               />
             ) : null}
             <button
@@ -85,20 +124,6 @@ const CategoryPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <div className="p-6">
-              <h3 className="text-2xl font-serif font-semibold text-amber-900 mb-4">
-                {selectedProduct.titolo}
-              </h3>
-              <p className="text-amber-800 mb-6">
-                {selectedProduct.descrizione}
-              </p>
-              {selectedProduct.video && (
-                <video controls className="w-full mt-2">
-                  <source src={selectedProduct.video} type="video/mp4" />
-                  Il tuo browser non supporta il tag video.
-                </video>
-              )}
-            </div>
           </div>
         </div>
       )}

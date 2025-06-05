@@ -5,7 +5,8 @@ import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import CategoryPage from './components/CategoryPage';
-
+import { ServicesSection } from './components/ServicesSection';
+import { NavigationSection } from './components/NavigationSection';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
               <>
                 <HeroSection />
                 <AboutSection />
+                <NavigationSection />
+                <ServicesSection />
               </>
             } />
             <Route path="/categoria/:id" element={<CategoryPage />} />

@@ -7,7 +7,7 @@ export const HeroSection: React.FC = () => {
         <img
           src="/assets/images/logo-bg.png"
           alt="Wood laser art background"
-          className="object-cover w-full h-full opacity-50"
+          className="object-contain w-full h-full"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-amber-50/80 to-white/90"></div>
       </div>
@@ -27,10 +27,10 @@ export const HeroSection: React.FC = () => {
             Scopri le nostre opere
           </a> */}
           <a
-            href="#contact"
+            href="#navigation"
             className="px-8 py-3 bg-transparent border-2 border-amber-600 text-amber-700 rounded-md hover:bg-amber-50 transition-colors duration-300"
           >
-            Contattaci
+            Le nostre opere
           </a>
         </div>
       </div>

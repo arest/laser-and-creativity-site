@@ -10,6 +10,10 @@ export const navigationItems: NavItem[] = [
     href: "#about"
   },
   {
+    label: "Cosa facciamo",
+    href: "#services"
+  },
+  {
     label: "Le nostre opere",
     href: "#works",
     children: []

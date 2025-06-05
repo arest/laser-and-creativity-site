@@ -1,11 +1,14 @@
 import React from 'react';
 import { Phone, Mail, Instagram, Facebook, Axe } from 'lucide-react';
 import { useNavigationItems } from '../hooks/useNavigationItems';
+import { useTexts } from '../hooks/useTexts';
 import { NavItem } from '../types';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { navigationItems, loading } = useNavigationItems();
+  const { navigationItems, loading: navLoading } = useNavigationItems();
+  const { texts, loading: textsLoading } = useTexts();
+  const chiSiamo = texts.find((t) => t.id === 1);
 
   return (
     <footer id="contact" className="bg-orange-950 text-orange-50 pt-16 pb-8">
@@ -19,9 +22,17 @@ export const Footer: React.FC = () => {
                 Laser e Creatività
               </h3>
             </div>
-            <p className="text-orange-200 mb-6">
-              Trasformiamo il legno in arte grazie al taglio laser di precisione e alla maestria artigianale dal 2018.
-            </p>
+            {textsLoading ? (
+              <p className="text-orange-200 mb-6">Caricamento...</p>
+            ) : chiSiamo ? (
+              <div className="text-orange-200 mb-6">
+                {chiSiamo.paragraphs.map((paragraph: string, index: number) => (
+                  <div key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-orange-200 mb-6">Testo non disponibile.</p>
+            )}
             <div className="flex space-x-4">
               <a href="https://www.instagram.com/_marisa60" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
                 <Instagram className="h-6 w-6" />
@@ -38,7 +49,7 @@ export const Footer: React.FC = () => {
               Link Rapidi
             </h3>
             <ul className="space-y-2">
-              {!loading && navigationItems.map((item: NavItem) => (
+              {!navLoading && navigationItems.map((item: NavItem) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
