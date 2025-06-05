@@ -7,9 +7,9 @@ import { useNavigationItems } from '../hooks/useNavigationItems';
 const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; onClick: () => void }> = ({ product, onClick }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer mb-6" onClick={onClick}>
     <h3 className="text-xl font-serif font-semibold text-amber-900 p-4 border-b border-amber-100">{product.titolo}</h3>
-    <div className="grid grid-cols-4 w-full">
+    <div className="flex flex-col md:grid md:grid-cols-4 w-full">
       {/* First Column - Primary Media */}
-      <div className="p-4">
+      <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.immagine ? (
           <div className="h-48">
             <img src={product.immagine} alt={product.titolo} className="w-full h-full object-contain" />
@@ -26,7 +26,7 @@ const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; o
       </div>
 
       {/* Second Column - Secondary Image */}
-      <div className="p-4">
+      <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.immagine2 ? (
           <div className="h-48">
             <img src={product.immagine2} alt={`${product.titolo} - Seconda immagine`} className="w-full h-full object-contain" />
@@ -35,7 +35,7 @@ const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; o
       </div>
 
       {/* Third Column - Video (only if there's a primary image) */}
-      <div className="p-4">
+      <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.video && product.immagine ? (
           <div className="h-48">
             <video 
