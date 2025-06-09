@@ -4,18 +4,21 @@ import { useProducts } from '../hooks/useProducts';
 import { useNavigationItems } from '../hooks/useNavigationItems';
 
 // ProductCard component for displaying a single product
-const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; onClick: () => void }> = ({ product, onClick }) => (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer mb-6" onClick={onClick}>
+const ProductCard: React.FC<{
+  product: import('../hooks/useProducts').Product;
+  onMediaClick: (mediaType: 'image' | 'image2' | 'video') => void;
+}> = ({ product, onMediaClick }) => (
+  <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
     <h3 className="text-xl font-serif font-semibold text-amber-900 p-4 border-b border-amber-100">{product.titolo}</h3>
     <div className="flex flex-col md:grid md:grid-cols-4 w-full">
       {/* First Column - Primary Media */}
       <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.immagine ? (
-          <div className="h-48">
+          <div className="h-48 cursor-pointer" onClick={() => onMediaClick('image')}>
             <img src={product.immagine} alt={product.titolo} className="w-full h-full object-contain" />
           </div>
         ) : product.video ? (
-          <div className="h-48">
+          <div className="h-48 cursor-pointer" onClick={() => onMediaClick('video')}>
             <video
               src={product.video}
               controls
@@ -28,7 +31,7 @@ const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; o
       {/* Second Column - Secondary Image */}
       <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.immagine2 ? (
-          <div className="h-48">
+          <div className="h-48 cursor-pointer" onClick={() => onMediaClick('image2')}>
             <img src={product.immagine2} alt={`${product.titolo} - Seconda immagine`} className="w-full h-full object-contain" />
           </div>
         ) : null}
@@ -37,7 +40,7 @@ const ProductCard: React.FC<{ product: import('../hooks/useProducts').Product; o
       {/* Third Column - Video (only if there's a primary image) */}
       <div className="p-4 border-b md:border-b-0 border-amber-100">
         {product.video && product.immagine ? (
-          <div className="h-48">
+          <div className="h-48 cursor-pointer" onClick={() => onMediaClick('video')}>
             <video
               src={product.video}
               controls
@@ -73,10 +76,14 @@ const CategoryPage: React.FC = () => {
   // Filter products by category id
   const filteredProducts = products.filter((p) => p.categoria === id);
 
-  // Modal state for selected product
+  // Modal state for selected product and media type
   const [selectedProduct, setSelectedProduct] = useState<import('../hooks/useProducts').Product | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<'image' | 'image2' | 'video' | null>(null);
 
-  const closeModal = () => setSelectedProduct(null);
+  const closeModal = () => {
+    setSelectedProduct(null);
+    setSelectedMedia(null);
+  };
 
   return (
     <section className="py-20">
@@ -91,28 +98,41 @@ const CategoryPage: React.FC = () => {
         ) : (
           <div className="max-w-4xl mx-auto">
             {filteredProducts.map((product, idx) => (
-              <ProductCard key={idx} product={product} onClick={() => setSelectedProduct(product)} />
+              <ProductCard
+                key={idx}
+                product={product}
+                onMediaClick={(mediaType) => {
+                  setSelectedProduct(product);
+                  setSelectedMedia(mediaType);
+                }}
+              />
             ))}
           </div>
         )}
       </div>
       {/* Modal for Selected Product */}
-      {selectedProduct && (
+      {selectedProduct && selectedMedia && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={closeModal}>
           <div
             className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto relative"
             onClick={e => e.stopPropagation()}
           >
-            {selectedProduct.video ? (
+            {selectedMedia === 'video' && selectedProduct.video ? (
               <video
                 src={selectedProduct.video}
                 controls
                 className="w-full h-auto max-h-[80vh] object-contain rounded-t-lg"
               />
-            ) : selectedProduct.immagine ? (
+            ) : selectedMedia === 'image' && selectedProduct.immagine ? (
               <img
                 src={selectedProduct.immagine}
                 alt={selectedProduct.titolo}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-t-lg"
+              />
+            ) : selectedMedia === 'image2' && selectedProduct.immagine2 ? (
+              <img
+                src={selectedProduct.immagine2}
+                alt={`${selectedProduct.titolo} - Seconda immagine`}
                 className="w-full h-auto max-h-[80vh] object-contain rounded-t-lg"
               />
             ) : null}
