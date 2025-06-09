@@ -18,7 +18,7 @@ export const AboutSection: React.FC = () => {
           <div className="relative">
             <div className="relative rounded-lg overflow-hidden shadow-xl">
               <img
-                src="https://images.pexels.com/photos/3342739/pexels-photo-3342739.jpeg"
+                src="https://images.ctfassets.net/ht62032y0gt7/310MWCfbuPo8slcOGnLSj9/643ef8e4b42fc57faab4b3fd20c57638/chii-siamo.jpeg"
                 alt="Artigiano al lavoro con taglio laser"
                 className="w-full h-auto"
               />

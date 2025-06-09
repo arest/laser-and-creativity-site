@@ -5,9 +5,9 @@ export const HeroSection: React.FC = () => {
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/images/logo-bg.png"
+          src="https://images.ctfassets.net/ht62032y0gt7/310MWCfbuPo8slcOGnLSj9/643ef8e4b42fc57faab4b3fd20c57638/chii-siamo.jpeg"
           alt="Wood laser art background"
-          className="object-contain w-full h-full"
+          className="object-cover w-full h-full"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-amber-50/80 to-white/90"></div>
       </div>

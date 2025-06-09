@@ -79,8 +79,8 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-orange-300 mr-3 flex-shrink-0" />
-                <a href="mailto:p.benia@libero.it" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
-                  p.benia@libero.it
+                <a href="mailto:p_benia@libero.it" className="text-orange-200 hover:text-orange-100 transition-colors duration-200">
+                  p_benia@libero.it
                 </a>
               </li>
               <li className="flex items-start mt-4">
